@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # $WORKSPACE: Path to the directory where test reults will be sent
-# $phpcmd: Path to the PHP CLI executable
 # $gitdir: Directory containing git repo
 # $betweenversions: Optional, specify the min and max 8digits (YYYYMMDD) allowed. Hyphen separated. Max = min if not specified.
 # $setversion: Optional, 10digits (YYYYMMDD00) to set all versions to. Empty = not set
@@ -10,7 +9,7 @@
 set -e
 
 # Verify everything is set
-required="WORKSPACE phpcmd gitdir"
+required="WORKSPACE gitdir"
 for var in $required; do
     if [ -z "${!var}" ]; then
         echo "Error: ${var} environment variable is not defined. See the script comments."
