@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# $gitdir: Directory containing git repo
 # $gitbranch: Branch we are going to examine
 
 set -e
 
-required="WORKSPACE gitdir gitbranch"
+required="WORKSPACE gitbranch"
 for var in ${required}; do
     if [ -z "${!var}" ]; then
         echo "Error: ${var} environment variable is not defined. See the script comments."
@@ -27,7 +26,7 @@ countfile=$WORKSPACE/detect_conflicts_counters_$gitbranch.csv
 mincountfile=$WORKSPACE/detect_conflicts_mincounter_$gitbranch.csv
 
 # Co to proper gitdir and gitpath
-cd $gitdir && git reset --hard $gitbranch
+cd $gitdir
 
 # Search and send to $lastfile
 echo -n > "$lastfile"

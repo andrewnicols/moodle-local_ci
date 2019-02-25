@@ -24,8 +24,7 @@ echo -n > "$resultfile"
 mydir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # checkout pristine copy of the configure branch
-cd $gitdir && git reset --hard $gitbranch
-
+cd $gitdir
 # copy the checker to the gitdir
 cp $mydir/check_upgrade_savepoints.php $gitdir/
 
