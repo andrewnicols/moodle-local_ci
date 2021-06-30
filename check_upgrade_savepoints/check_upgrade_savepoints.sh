@@ -23,8 +23,16 @@ echo -n > "$resultfile"
 # calculate some variables
 mydir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# checkout pristine copy of the configure branch
-cd $gitdir && git reset --hard $gitbranch
+# Co to proper gitdir and gitpath
+cd "$gitdir"
+if [ -d "{$gitdir}/.git" ]; then
+  # Only if it's a git dir.
+  if git -C . rev-parse 2> /dev/null; then
+      git reset --hard $gitbranch
+  fi
+else
+  echo "Not a git directory. Not resetting git directories."
+fi
 
 # copy the checker to the gitdir
 cp $mydir/check_upgrade_savepoints.php $gitdir/

@@ -28,9 +28,13 @@ mincountfile="$WORKSPACE/illegal_whitespace_mincounter_$gitbranch.csv"
 
 # Co to proper gitdir and gitpath
 cd "$gitdir"
-# Only if it's a git dir.
-if git -C . rev-parse 2> /dev/null; then
-    git reset --hard $gitbranch
+if [ -d "{$gitdir}/.git" ]; then
+  # Only if it's a git dir.
+  if git -C . rev-parse 2> /dev/null; then
+      git reset --hard $gitbranch
+  fi
+else
+  echo "Not a git directory. Not resetting git directories."
 fi
 
 # Search and send to $lastfile
